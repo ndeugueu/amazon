@@ -33,7 +33,7 @@ def run_fba_crew(user_input):
         agents=[user, product_hunter, sourcing_agent, listing_agent, launch_agent],
         messages=[], max_round=4
     )
-    manager = GroupChatManager(groupchat=groupchat, llm_config={"model": "gpt-4", "api_key": "sk-REPLACE_ME"})
+    manager = GroupChatManager(groupchat=groupchat, llm_config={"model": "gpt-4", "api_key": ""})
     result = user.initiate_chat(manager, message=user_input)
     save_interaction(user_input, result)
     return result
