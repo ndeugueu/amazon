@@ -3,7 +3,7 @@ import os
 from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager
 from utils.memory import save_interaction
 
-# Récupération de la clé API via variable d'environnement
+# Récupération sécurisée de la clé via os.getenv
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 llm_conf = {
@@ -14,33 +14,33 @@ llm_conf = {
 product_hunter = AssistantAgent(
     name="ProductHunterAgent",
     llm_config=llm_conf,
-    system_message="""Tu es un expert en recherche de produits Amazon FBA. Ta tâche est d’identifier des produits rentables avec ces critères : 
+    system_message="""Tu es un expert en recherche de produits Amazon FBA. Objectif :
 - Prix de vente entre 20€ et 70€
-- Poids < 1kg
+- Moins de 1 kg
 - Moins de 1000 avis
-- Forte demande (500+ ventes/mois)
-- Produit améliorable (design, packaging...)
-- Pas de marque dominante
+- Demande 500+/mois
+- Facile à améliorer
+- Sans marque dominante
 
-Donne des suggestions concrètes et argumentées."""
+Propose des idées concrètes et analysées."""
 )
 
 sourcing_agent = AssistantAgent(
     name="SourcingAgent",
     llm_config=llm_conf,
-    system_message="Tu es un expert en sourcing de produits Alibaba. Fournis des recommandations de fournisseurs et de coûts estimés selon les idées du ProductHunter."
+    system_message="Tu es expert sourcing Alibaba. Trouve fournisseurs, MOQ et estimations de coût pour les produits proposés."
 )
 
 listing_agent = AssistantAgent(
     name="ListingAgent",
     llm_config=llm_conf,
-    system_message="Tu es expert Amazon SEO. Rédige des titres, puces et descriptions optimisés pour le référencement."
+    system_message="Tu es expert SEO Amazon. Génére des fiches produit optimisées (titre, bullet points, description)."
 )
 
 launch_agent = AssistantAgent(
     name="LaunchPlannerAgent",
     llm_config=llm_conf,
-    system_message="Tu es un spécialiste du lancement de produits sur Amazon. Tu proposes une stratégie incluant : offre de lancement, récolte d’avis, campagne PPC, visuels."
+    system_message="Tu es expert lancement FBA. Donne stratégie de lancement, avis, promos, campagnes PPC, visuels."
 )
 
 user = UserProxyAgent(
