@@ -1,7 +1,7 @@
 
 import os
 from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager
-from utils.memory import save_interaction
+from .memory import save_interaction
 
 # Récupération sécurisée de la clé via os.getenv
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

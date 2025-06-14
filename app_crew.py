@@ -1,9 +1,9 @@
 
 import streamlit as st
-from utils.memory import get_last_interactions
-from utils.multiagent_backend import run_fba_crew
+from fba_assistant.utils.memory import get_last_interactions
+from fba_assistant.utils.multiagent_backend import run_fba_crew
 
-from utils.memory import get_last_interactions, init_memory
+from fba_assistant.utils.memory import get_last_interactions, init_memory
 init_memory()
 
 
